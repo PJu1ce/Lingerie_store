@@ -12,7 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="{% static '/plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static '/plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static '/plugins/OwlCarousel2-2.2.1/animate.css' %}">
-		<link href="{% static '/plugins/colorbox/colorbox.css' %}" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="{% static '/plugins/colorbox/colorbox.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static '/styles/main_styles.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static '/styles/responsive.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static '/styles/cart.css' %}">
@@ -77,6 +77,29 @@
 			<div class="burger_container d-flex flex-column align-items-center justify-content-around menu_mm"><div></div><div></div><div></div></div>
 		</div>
 	</header>
+
+		<!-- Menu -->
+
+	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
+		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
+		<div class="logo menu_mm"><a href="#">Wish</a></div>
+		<div class="search">
+			<form action="#">
+				<input type="search" class="search_input menu_mm" required="required">
+				<button type="submit" id="search_button_menu" class="search_button menu_mm"><img class="menu_mm" src="{% static '/images/magnifying-glass.svg' %}" alt=""></button>
+			</form>
+		</div>
+		<nav class="menu_nav">
+			<ul class="menu_mm">
+				<li class="menu_mm"><a href="index.html">home</a></li>
+				<li class="menu_mm"><a href="#">clothes</a></li>
+				<li class="menu_mm"><a href="#">accessories</a></li>
+				<li class="menu_mm"><a href="#">lingerie</a></li>
+				<li class="menu_mm"><a href="#">contact</a></li>
+			</ul>
+		</nav>
+	</div>
+	
 {% block content %}
 
 {% endblock content %}
