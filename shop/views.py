@@ -2,13 +2,11 @@ from django.shortcuts import render, get_object_or_404
 from .models import Category, Product
 from django.views import generic
 from django.http import HttpResponse
+from cart.forms import CartAddProductForm
 
-class IndexView(generic.ListView):
-    template_name = 'shop/index.html'
-    context_object_name = 'shop'
-
-    def get_queryset(self):
-        return HttpResponse('')
+def new_arrivals(request):
+    new_products = Product.objects.filter(available=True).order_by('-updated')[:3]
+    return render(request, 'shop/index.html', {'new_products': new_products})
 
 def product_list(request, category_slug=None):
     category = None
@@ -27,6 +25,8 @@ def product_list(request, category_slug=None):
 
 def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
+    cart_product_form = CartAddProductForm()
 
     return render(request, 'shop/product/detail.html',
-                  {'product': product})
+                  {'product': product,
+                   'cart_product_form': cart_product_form})
