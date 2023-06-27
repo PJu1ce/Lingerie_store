@@ -45,7 +45,7 @@
 								<ul>
 									<li class=" cart_product d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-start">
 										<!-- Product Image -->
-										<div class="cart_product_image"><img src="{% if product.image %}{{ product.image.url }}{% else %}{% static '/img/no_image.png' %}{% endif %}" alt=""></div>
+										<div class="cart_product_image"><img src="{% if product.image %}{{ product.image.url }}{% else %}{% static '/img/no_image.png' %}{% endif %}"></div>
 										<!-- Product Name -->
 										<div class="cart_product_name"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></div>
 										<div class="cart_product_info ml-auto">
@@ -53,9 +53,14 @@
 												<!-- Product Price -->
 												<div class="cart_product_price">{{ item.price }}</div>
 												<!-- Product Quantity -->
-												<div class="product_quantity_container">
-													{{ item.quantity }}
-												</div>
+												<form action="{% url 'cart:cart_add' product.id %}" method="post">
+													<div class="product_quantity_container">
+														{{ item.update_quantity_form.quantity }}
+														{{ item.update_quantity_form.override }}
+														<input type="submit" value="Update">
+														{% csrf_token %}
+													</div>
+												</form>
 												<!-- Products Total Price -->
 												<div class="cart_product_total">{{ item.total_price }}</div>
 												<!-- Product Cart Trash Button -->
@@ -112,7 +117,7 @@
 								<div class="cart_total_price ml-auto">$40.00</div>
 							</li>
 						</ul>
-						<button class="cart_total_button">proceed to checkout</button>
+						<button class="cart_total_button"><a href="{% url 'orders:order_create' %}">Оплатить</a></button>
 					</div>
 				</div>
 			</div>
